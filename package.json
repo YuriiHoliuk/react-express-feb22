@@ -26,7 +26,11 @@
     "lint": "eslint ./ --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint --fix ./ --ext .js,.jsx,.ts,.tsx",
     "start": "node server/server.js",
-    "dev": "nodemon server/server.js"
+    "dev": "nodemon server/server.js",
+    "predeploy": "rm -rf ./build && npm run fe:build",
+    "server:deploy": "git push heroku master",
+    "fe:deploy": "gh-pages -d build",
+    "deploy": "npm run server:deploy && npm run fe:deploy"
   },
   "eslintConfig": {
     "extends": [
@@ -56,7 +60,7 @@
     "eslint-plugin-jsx-a11y": "^6.6.0",
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "gh-pages": "^4.0.0",
-    "nodemon": "^2.0.18"
+    "nodemon": "^2.0.18",
+    "gh-pages": "^4.0.0"
   }
 }

@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Client App</h1>
+        <h1>Todos App</h1>
 
         <ul>
           {todos.map((todo) => (
