@@ -1,23 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
+interface Todo {
+  id: number;
+  text: string;
+}
+
 function App() {
+  const [todos, setTodos] = useState<Todo[]>([]);
+  // const [input, setInput] = useState<string>('');
+
+  useEffect(() => {
+    fetch('http://localhost:8000/todos')
+      .then((res) => res.json())
+      .then((data) => setTodos(data));
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Client App</h1>
+
+        <ul>
+          {todos.map((todo) => (
+            <li key={todo.id}>{todo.text}</li>
+          ))}
+        </ul>
       </header>
     </div>
   );
