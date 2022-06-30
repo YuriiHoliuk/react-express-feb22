@@ -11,7 +11,7 @@ function App() {
   // const [input, setInput] = useState<string>('');
 
   useEffect(() => {
-    fetch('http://localhost:8000/todos')
+    fetch(`${process.env.REACT_APP_BASE_API_URL}/todos`)
       .then((res) => res.json())
       .then((data) => setTodos(data));
   }, []);
